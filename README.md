@@ -18,11 +18,17 @@ pip install -r requirements.txt
 Before you can run Robinpy, you need to configure your environment variables. Create a .env file in the root directory of the project and populate it as shown below:
 
 ROBIN_USER=your_robinhood_username
+
 ROBIN_PASSWORD=your_robinhood_password
+
 TWILIO_ACCOUNT_SID=your_twilio_account_sid
+
 TWILIO_AUTH_TOKEN=your_twilio_account_auth_token
+
 OPENAI_API_KEY=your_openai_api_key
+
 TO_NUMBER=phone_number_where_you_want_messages_sent
+
 FROM_NUMBER=your_twilio_number
 
 ### Replace placeholders (your_robinhood_username, your_twilio_account_sid, etc.) with your actual values.
