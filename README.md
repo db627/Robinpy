@@ -24,7 +24,8 @@ TWILIO_AUTH_TOKEN=your_twilio_account_auth_token
 OPENAI_API_KEY=your_openai_api_key
 TO_NUMBER=phone_number_where_you_want_messages_sent
 FROM_NUMBER=your_twilio_number
-Replace placeholders (your_robinhood_username, your_twilio_account_sid, etc.) with your actual values.
+
+### Replace placeholders (your_robinhood_username, your_twilio_account_sid, etc.) with your actual values.
 
 ## Running the App
 After setting up your environment variables, you can run the app using:
