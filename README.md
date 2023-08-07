@@ -37,10 +37,6 @@ FROM_NUMBER=your_twilio_number
 After setting up your environment variables, you can run the app using:
 python public/main.py  # Assuming the main script is named 'main.py' and is located inside the 'public' folder.
 
-
-License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
-
 Acknowledgments
 a. The Robinhood team for their trading platform.
 b. OpenAI for their API.
