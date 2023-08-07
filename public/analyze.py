@@ -48,7 +48,6 @@ def langchain(cleaned_stock_data):
     for symbol, data_entries in cleaned_stock_data.items():
         closing_prices = [float(entry['close_price']) for entry in data_entries]
 
-        # Use last 5 days of data
         closing_prices = closing_prices[-5:]
 
         if len(closing_prices) < 3:
