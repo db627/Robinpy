@@ -19,8 +19,8 @@ class Main:
         raw_data = parseNames(stock_name)
         formatted_data = format_stock_data(raw_data)
         print(organize_langchain(langchain(parseNames(stockNames()))))
-        send_time_message(str(stock_data) + '\n' + str(organize_langchain(langchain(parseNames(stockNames())))))
-        # sendMessage(str(stock_data) + '\n' + str(organize_langchain(langchain(parseNames(stockNames())))))
+        #send_time_message(str(stock_data) + '\n' + str(organize_langchain(langchain(parseNames(stockNames())))))
+        sendMessage(str(stock_data) + '\n' + str(organize_langchain(langchain(parseNames(stockNames())))))
         print("Message sent!")
         
 
