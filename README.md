@@ -35,9 +35,12 @@ FROM_NUMBER=your_twilio_number
 
 ## Running the App
 After setting up your environment variables, you can run the app using:
-python public/main.py  # Assuming the main script is named 'main.py' and is located inside the 'public' folder.
+python public/main.py 
+# Assuming the main script is named 'main.py' and is located inside the 'public' folder.
 
 Acknowledgments
 a. The Robinhood team for their trading platform.
+
 b. OpenAI for their API.
+
 c. Twilio for their messaging services.
