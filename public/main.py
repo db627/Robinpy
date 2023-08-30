@@ -4,8 +4,7 @@ from message import send_time_message
 from login import login
 from robin import simplify_stock_data
 from dotenv import load_dotenv, dotenv_values
-from analyze import getStockData, stockNames, parseNames, format_stock_data, langchain, organize_langchain
-
+from data import getStockData, stockNames, parseNames, format_stock_data, analyzeData, organize_analyzed_data
 class Main:
     load_dotenv()
     def main():
@@ -25,10 +24,10 @@ class Main:
         stock_name = stockNames()
         raw_data = parseNames(stock_name)
         formatted_data = format_stock_data(raw_data)
-        print(organize_langchain(langchain(parseNames(stockNames()))))
+        print(organize_analyzed_data(analyzeData(parseNames(stockNames()))))
         #send_time_message(str(stock_data) + '\n' + str(organize_langchain(langchain(parseNames(stockNames())))))
-        sendMessage(str(stock_data) + '\n' + str(organize_langchain(langchain(parseNames(stockNames())))))
-        print("Message sent!")
+        sendMessage(str(stock_data) + '\n' + str(organize_analyzed_data(analyzeData(parseNames(stockNames())))))
+        #print("Message sent!")
         
 
     if __name__ == "__main__":
