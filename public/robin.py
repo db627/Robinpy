@@ -1,6 +1,9 @@
 import robin_stocks.robinhood as r
 
-def simplify_stock_data():
+def login(user, pwd): #connects to robinhood account
+    r.login(username = user, password = pwd)
+
+def simplify_stock_data(): #cleans up the stock data to be more readable
     stock_data = r.account.build_holdings(with_dividends=False)
     simplified_data = ""
     for key, value in stock_data.items():
@@ -10,7 +13,7 @@ def simplify_stock_data():
         simplified_data += f"Stock: {key}\nPrice: {price}\nQuantity: {quantity}\nEquity: {equity}\n\n"
     return simplified_data
 
-def viewAccountInfo():
+def viewAccountInfo(): #pulls account info from robinhood account
     my_stocks = r.build_holdings()
     for key,value in my_stocks.items():
         print(key,value)

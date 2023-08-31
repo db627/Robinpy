@@ -1,31 +1,24 @@
 from dotenv import load_dotenv
 import os
-from langchain.llms import OpenAI
 import robin_stocks.robinhood as r
 
 # Load environment variables using dotenv package
 load_dotenv()
 
-# Connect langchain to the openAI API
-llm = OpenAI(openai_api_key=os.getenv("OPENAI_API_KEY"))
-
-""" def getStockData(stock_name):
-    return r.stocks.get_stock_historicals(stock_name)
-""" 
-def getStockData(stock_name):
-    return r.stocks.get_stock_historicals(stock_name, interval='hour', span='month', bounds='regular')
-
-def stockNames():
+def stockNames(): #retrieves the names of stocks in my robinhood brokerage using robinhood api
     stock_data = r.account.build_holdings(with_dividends=False)
     return list(stock_data.keys())
 
-def parseNames(stock_names):
+def parseNames(stock_names): #parses the names of stocks in my robinhood brokerage using robinhood api
     return {name: getStockData(name) for name in stock_names}
 
-def format_stock_data(stock_data):
+def getStockData(stock_name): #retrieves the stock data of all my personal holdings using robinhood api
+    return r.stocks.get_stock_historicals(stock_name, interval='hour', span='month', bounds='regular')
+
+def format_stock_data(stock_data): #formats the stock data to be more readable and clean for the analysis
     result = []
-    for symbol, data in stock_data.items():
-        for entry in data:
+    for symbol, data in stock_data.items(): #iterates through all teh stock data
+        for entry in data: #for each stock, it cleans up the data to be more readable
             date = entry['begins_at'].split('T')[0]
             open_price = entry['open_price']
             close_price = entry['close_price']
@@ -36,10 +29,10 @@ def format_stock_data(stock_data):
             interpolated = entry['interpolated']
 
             result.append(f"Symbol: {symbol}, Date: {date}, Open Price: {open_price}, Close Price: {close_price}, High Price: {high_price}, Low Price: {low_price}, Volume: {volume}, Session: {session}, Interpolated: {interpolated}")
-
+            #returns the data in a cleaner format
     return '\n'.join(result)
 
-def moving_average(data, n):
+def moving_average(data, n): #uses a moving average strategy to analyze the data
     cumsum = [0]
     moving_avgs = []
     for i, x in enumerate(data, 1):
@@ -51,7 +44,7 @@ def moving_average(data, n):
             moving_avgs.append(None)
     return moving_avgs
 
-def compute_rsi(data, window):
+def compute_rsi(data, window): #computes the rsi of each stock
     delta = [0] + [data[i] - data[i-1] for i in range(1, len(data))]
     gain = [delta[i] if delta[i] > 0 else 0 for i in range(len(delta))]
     loss = [-delta[i] if delta[i] < 0 else 0 for i in range(len(delta))]
@@ -70,7 +63,7 @@ def compute_rsi(data, window):
     
     return rsi
 
-def analyzeData(cleaned_stock_data):
+def analyzeData(cleaned_stock_data): #uses the moving average and rsi to predict when to buy sell and hold the stock
     actions = {}
     for symbol, data_entries in cleaned_stock_data.items():
         closing_prices = [float(entry['close_price']) for entry in data_entries]
@@ -98,7 +91,7 @@ def analyzeData(cleaned_stock_data):
 
     return actions
 
-def organize_analyzed_data(analyzed_data):
+def organize_analyzed_data(analyzed_data): #organizes the predictions above and prepares them to be sent
     return '\n'.join([f"Symbol: {symbol}, Action: {action}" for symbol, action in analyzed_data.items()])
 
 
