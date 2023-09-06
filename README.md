@@ -1,6 +1,6 @@
 # Robinpy
 Robinpy is a Python application designed to interact with the Robinhood brokerage. It gives buy, sell, and hold signals for all personal standings daily using the Twilio API. 
-# Example:
+# Example Output:
 ![RobinPy Example](./robinpy%20example.png)
 ## Getting Started
 Prerequisites
